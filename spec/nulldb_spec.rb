@@ -284,7 +284,11 @@ describe "NullDB" do
   end
 
   it 'should handle ActiveRecord::ConnectionNotEstablished' do
+<<<<<<< HEAD
     expect( ActiveRecord::Base ).to receive(:connection_pool).and_raise(ActiveRecord::ConnectionNotEstablished)
+=======
+    ActiveRecord::Base.should_receive(:connection_pool).and_raise(ActiveRecord::ConnectionNotEstablished)
+>>>>>>> Update rspec to 2.14.1 and fix deprecation warnings.
     expect { NullDB.nullify }.to_not raise_error
   end
 end
