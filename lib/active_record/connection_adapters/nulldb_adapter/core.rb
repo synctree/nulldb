@@ -280,7 +280,9 @@ class ActiveRecord::ConnectionAdapters::NullDBAdapter < ActiveRecord::Connection
   def args_with_optional_cast_type(col_def)
     default_column_arguments(col_def).tap do |args|
       if respond_to? :fetch_type_metadata
-        args.insert(2, fetch_type_metadata(col_def.type))
+        meta = fetch_type_metadata(col_def.type)
+        meta.instance_variable_set('@limit', col_def.limit)
+        args.insert(2, meta)
       elsif initialize_column_with_cast_type?
         args.insert(2, lookup_cast_type(col_def.type))
       end
@@ -291,8 +293,9 @@ class ActiveRecord::ConnectionAdapters::NullDBAdapter < ActiveRecord::Connection
     [
       col_def.name.to_s,
       col_def.default,
-      col_def.type,
-      col_def.null
+      #col_def.type
+      #col_def.null
+      col_def.null.nil? || col_def.null # cast  [false, nil, true] => [false, true, true], other adapters default to null=true 
     ]
   end
 
