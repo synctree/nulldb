@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'pry'
 
 # Optional simplecov loading
 begin
