@@ -282,8 +282,6 @@ class ActiveRecord::ConnectionAdapters::NullDBAdapter < ActiveRecord::Connection
       if defined?(ActiveRecord::ConnectionAdapters::SqlTypeMetadata)
         meta = ActiveRecord::ConnectionAdapters::SqlTypeMetadata.new(sql_type: col_def.type)
         args.insert(2, meta_with_limit!(meta, col_def))
-      elsif respond_to? :fetch_type_metadata
-        args.insert(2, meta_with_limit!(fetch_type_metadata(col_def.type), col_def))
       elsif initialize_column_with_cast_type?
         args.insert(2, meta_with_limit!(lookup_cast_type(col_def.type), col_def))
       else

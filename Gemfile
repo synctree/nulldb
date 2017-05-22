@@ -3,9 +3,10 @@ gem 'pry-byebug'
 
 git 'https://github.com/rails/rails.git',
   # ref: '40ba03ada' do # WORKS
-  ref: 'e4108fc61' do
+  #ref: 'e4108fc61' do
   # ref: '5ac89b168b049' do FAILS
   #ref: 'd046390c32' do WORKS
+  branch: 'master' do
 
   gem 'activerecord'
 end
