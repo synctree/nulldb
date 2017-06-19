@@ -12,7 +12,7 @@ class ActiveRecord::ConnectionAdapters::NullDBPostgresAdapter <
     ActiveRecord::ConnectionAdapters::NullDBAdapter
 
   class TableDefinition < ActiveRecord::ConnectionAdapters::TableDefinition
-    include ActiveRecord::ConnectionAdapters::TableDefinition
+    include ActiveRecord::ConnectionAdapters::PostgreSQL::ColumnMethods
   end
 
   def self.adapter
